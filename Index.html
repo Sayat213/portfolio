@@ -1,75 +1,148 @@
 <!DOCTYPE html>
-<div class="container">
 <html lang="kk">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Менің алғашқы сайтым</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Popup Form Validation</title>
 
     <style>
       body {
-        background:linear-gradient(to right, #fce4ec, #e3f2fd);
+        margin: 0;
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #fce4ec, #e3f2fd);
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
-      h1 {
-        color: #e53935;
-        text-align: center;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-
+      button {
+        background: #e53935;
+        color: white;
+        border: none;
+        padding: 14px 28px;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
       }
 
-      p {
-        background-color:white;
-        pagging:20px;
-        border-radius:10px;
-        width:300px;
-        margin:20px;
-        color: #333;
-        font-size: 20px;
-        text-align: center;
+      button:hover {
+        background: #c62828;
       }
-     img {
-        display: block;
-        margin: 20px auto;
-        border-radius: 12px;
-      }
-     a {
-        color: #1976d2;
-        text-decoration: none;
-        font-size: 18px;
-      }
-     a hover {
-         color: #e53935;
-         text-decoration:underline;
-       }
-     .container {
-         background: white;
-         max-width: 600px;
-         margin: 40px auto;
-         padding: 30px;
-         border-radius: 18px;
-         box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-     }
-     <p>Мен веб-дизайн үйреніп жатырмын</p>
-p {
-  padding: 20px;
-}
-p {
-  border: 2px solid #ddd;
-}
-p {
-  margin: 20px;
-}
 
+      /* ===== MODAL ===== */
+      .modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
+      .modal-content {
+        background: white;
+        width: 100%;
+        max-width: 400px;
+        padding: 30px;
+        border-radius: 16px;
+        position: relative;
+      }
+
+      .close {
+        position: absolute;
+        top: 12px;
+        right: 16px;
+        font-size: 22px;
+        cursor: pointer;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 12px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+      }
+
+      #message {
+        margin-top: 10px;
+        font-size: 14px;
+      }
     </style>
   </head>
 
   <body>
-    <h1>Сәлем, Әлем!</h1>
-    <p>Менің алғашқы веб-бетім</p>
-  </body>
+    <!-- OPEN MODAL BUTTON -->
+    <button id="openModal">Байланысу</button>
 
+    <!-- MODAL -->
+    <div class="modal" id="modal">
+      <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+
+        <h2>Байланысу</h2>
+
+        <input type="text" id="name" placeholder="Атыңыз" />
+        <input type="email" id="email" placeholder="Email" />
+
+        <button id="sendBtn">Жіберу</button>
+
+        <p id="message"></p>
+      </div>
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+      // ===== ЭЛЕМЕНТТЕР =====
+      const openBtn = document.getElementById("openModal");
+      const closeBtn = document.getElementById("closeModal");
+      const modal = document.getElementById("modal");
+
+      const nameInput = document.getElementById("name");
+      const emailInput = document.getElementById("email");
+      const sendBtn = document.getElementById("sendBtn");
+      const message = document.getElementById("message");
+
+      // ===== MODAL АШУ =====
+      openBtn.addEventListener("click", function () {
+        modal.style.display = "flex";
+      });
+
+      // ===== MODAL ЖАБУ =====
+      closeBtn.addEventListener("click", function () {
+        modal.style.display = "none";
+      });
+
+      // ===== FORM ТЕКСЕРУ =====
+      sendBtn.addEventListener("click", function () {
+        const name = nameInput.value;
+        const email = emailInput.value;
+
+        if (name === "" || email === "") {
+          message.textContent = "❌ Барлық өрісті толтырыңыз";
+          message.style.color = "red";
+        } else {
+          message.textContent =
+            "✅ Рақмет, " + name + "! Хабарламаңыз жіберілді.";
+          message.style.color = "green";
+
+          // тазалау
+          nameInput.value = "";
+          emailInput.value = "";
+        }
+      });
+
+      // ===== ФОНДЫ БАСҚАНДА ЖАБУ =====
+      modal.addEventListener("click", function (e) {
+        if (e.target === modal) {
+          modal.style.display = "none";
+        }
+      });
+    </script>
+  </body>
 </html>
-</div>
+
+
