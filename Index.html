@@ -3,146 +3,188 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Popup Form Validation</title>
-
+    <title>EDGE Fashion Header</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
     <style>
+      :root {
+        --text-primary: #111;
+        --text-muted: #666;
+        --bg: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
       body {
         margin: 0;
         min-height: 100vh;
-        font-family: Arial, sans-serif;
-        background: linear-gradient(to right, #fce4ec, #e3f2fd);
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        background: var(--bg);
+        color: var(--text-primary);
+        font-family: "Inter", sans-serif;
       }
 
-      button {
-        background: #e53935;
-        color: white;
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 22px 60px;
+      }
+
+      .left-actions,
+      .right-actions {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+      }
+
+      .logo {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 24px;
+        letter-spacing: 6px;
+        text-transform: uppercase;
+        color: var(--text-primary);
+      }
+
+      .icon-button {
         border: none;
-        padding: 14px 28px;
-        font-size: 16px;
-        border-radius: 8px;
+        background: transparent;
+        padding: 0;
         cursor: pointer;
-      }
-
-      button:hover {
-        background: #c62828;
-      }
-
-      /* ===== MODAL ===== */
-      .modal {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.5);
         display: flex;
         align-items: center;
-        justify-content: center;
       }
 
-      .modal-content {
-        background: white;
-        width: 100%;
-        max-width: 400px;
-        padding: 30px;
-        border-radius: 16px;
+      .icon {
+        width: 22px;
+        height: 22px;
+        stroke: var(--text-primary);
+        stroke-width: 1.6;
+        fill: none;
+      }
+
+      .bag {
         position: relative;
       }
 
-      .close {
+      .bag-count {
         position: absolute;
-        top: 12px;
-        right: 16px;
-        font-size: 22px;
-        cursor: pointer;
+        top: -8px;
+        right: -8px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--text-primary);
+        color: white;
+        font-size: 10px;
+        display: grid;
+        place-items: center;
+        line-height: 1;
       }
 
-      input {
+      main {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 60px;
+        align-items: center;
+        padding: 20px 80px 60px;
+      }
+
+      .hero-image {
         width: 100%;
-        padding: 12px;
-        margin-bottom: 12px;
-        border-radius: 8px;
-        border: 1px solid #ccc;
-        font-size: 14px;
+        height: 560px;
+        object-fit: contain;
       }
 
-      #message {
-        margin-top: 10px;
-        font-size: 14px;
+      .caption {
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 12px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-top: 12px;
+      }
+
+      @media (max-width: 960px) {
+        header {
+          padding: 18px 30px;
+        }
+
+        main {
+          grid-template-columns: 1fr;
+          padding: 20px 30px 50px;
+        }
+
+        .hero-image {
+          height: 420px;
+        }
       }
     </style>
   </head>
-
   <body>
-    <!-- OPEN MODAL BUTTON -->
-    <button id="openModal">Байланысу</button>
-
-    <!-- MODAL -->
-    <div class="modal" id="modal">
-      <div class="modal-content">
-        <span class="close" id="closeModal">&times;</span>
-
-        <h2>Байланысу</h2>
-
-        <input type="text" id="name" placeholder="Атыңыз" />
-        <input type="email" id="email" placeholder="Email" />
-
-        <button id="sendBtn">Жіберу</button>
-
-        <p id="message"></p>
+    <header>
+      <div class="left-actions">
+        <button class="icon-button" aria-label="Мәзір">
+          <svg class="icon" viewBox="0 0 24 24">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
       </div>
-    </div>
 
-    <!-- ===== JAVASCRIPT ===== -->
-    <script>
-      // ===== ЭЛЕМЕНТТЕР =====
-      const openBtn = document.getElementById("openModal");
-      const closeBtn = document.getElementById("closeModal");
-      const modal = document.getElementById("modal");
+      <div class="logo">EDGE</div>
 
-      const nameInput = document.getElementById("name");
-      const emailInput = document.getElementById("email");
-      const sendBtn = document.getElementById("sendBtn");
-      const message = document.getElementById("message");
+      <div class="right-actions">
+        <button class="icon-button" aria-label="Іздеу">
+          <svg class="icon" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="20" y1="20" x2="16.5" y2="16.5"></line>
+          </svg>
+        </button>
+        <button class="icon-button" aria-label="Профиль">
+          <svg class="icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M4 20c2.2-4 13.8-4 16 0"></path>
+          </svg>
+        </button>
+        <button class="icon-button" aria-label="Таңдаулылар">
+          <svg class="icon" viewBox="0 0 24 24">
+            <path
+              d="M12 20s-7-4.35-7-9a4 4 0 0 1 7-2.65A4 4 0 0 1 19 11c0 4.65-7 9-7 9z"
+            ></path>
+          </svg>
+        </button>
+        <button class="icon-button bag" aria-label="Себет">
+          <svg class="icon" viewBox="0 0 24 24">
+            <path d="M6 8h12l-1 12H7L6 8z"></path>
+            <path d="M9 8V6a3 3 0 1 1 6 0v2"></path>
+          </svg>
+          <span class="bag-count">0</span>
+        </button>
+      </div>
+    </header>
 
-      // ===== MODAL АШУ =====
-      openBtn.addEventListener("click", function () {
-        modal.style.display = "flex";
-      });
-
-      // ===== MODAL ЖАБУ =====
-      closeBtn.addEventListener("click", function () {
-        modal.style.display = "none";
-      });
-
-      // ===== FORM ТЕКСЕРУ =====
-      sendBtn.addEventListener("click", function () {
-        const name = nameInput.value;
-        const email = emailInput.value;
-
-        if (name === "" || email === "") {
-          message.textContent = "❌ Барлық өрісті толтырыңыз";
-          message.style.color = "red";
-        } else {
-          message.textContent =
-            "✅ Рақмет, " + name + "! Хабарламаңыз жіберілді.";
-          message.style.color = "green";
-
-          // тазалау
-          nameInput.value = "";
-          emailInput.value = "";
-        }
-      });
-
-      // ===== ФОНДЫ БАСҚАНДА ЖАБУ =====
-      modal.addEventListener("click", function (e) {
-        if (e.target === modal) {
-          modal.style.display = "none";
-        }
-      });
-    </script>
+    <main>
+      <div>
+        <img
+          class="hero-image"
+          src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=contain&w=800&q=80"
+          alt="Қара сәнді көйлек"
+        />
+      </div>
+      <div>
+        <img
+          class="hero-image"
+          src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=contain&w=800&q=80"
+          alt="Ақ-қара кешкі көйлек"
+        />
+      </div>
+    </main>
   </body>
 </html>
-
-
